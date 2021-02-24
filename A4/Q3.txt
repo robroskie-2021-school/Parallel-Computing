@@ -1,0 +1,16 @@
+Break the code up using sections and iterate from n to 0. This way no threads can ever access the same element at the same time.
+
+int div = n/2;
+#pragma omp parallel sections 
+{
+#section 
+for(int i = n; i > div; i--)
+{
+    a[i] = a[i - 1] + i;
+}
+
+#section 
+for(int i = div; i > 1; i--)
+{
+    a[i] = a[i - 1] + i;
+}
