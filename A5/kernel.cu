@@ -47,7 +47,7 @@ int main()
         printf("a[%d]: %.7f\n", j, a[j]);
 
     printf("Serial code took %.2f ms to initialize array\n\n",(end - start) / CLOCKS_PER_SEC * 1000);
-
+    free(a);
     //Repeat parallelized version of procedure 
     double* b;
     double* b_d;
@@ -73,6 +73,8 @@ int main()
         printf("b[%d]: %.7f\n", j, b[j]);
 
     printf("Parallel code took %.2f ms to initialize array", (end - start) / CLOCKS_PER_SEC * 1000);
+
+    free(b); cudaFree(b_d);
 
     return 0;
 }
